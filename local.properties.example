@@ -1,0 +1,15 @@
+# 取件码管家 — 本机 SDK 路径示例
+#
+# 用法：复制本文件为 local.properties（同目录），按需修改 sdk.dir。
+#   Windows: copy local.properties.example local.properties
+#   PowerShell: Copy-Item local.properties.example local.properties
+#
+# 注意：真实的 local.properties 是机器相关配置，已在 .gitignore 中忽略，不要提交进版本库。
+
+# Android SDK 根目录（本机已把工具链装在 D:\android-tools\sdk）
+# 在 .properties 文件里反斜杠是转义字符，Windows 路径必须写双反斜杠或改用正斜杠：
+sdk.dir=C:\\Android\\Sdk
+# 等价写法： sdk.dir=C:/Android/Sdk
+
+# JAVA_HOME 不建议写在这里；用 pickup-code-android\tools\env.ps1 点源导入设置环境变量：
+#   . .\tools\env.ps1

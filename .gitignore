@@ -1,0 +1,28 @@
+# 本机相关配置（含 SDK 路径），不入版本库
+local.properties
+
+# Gradle 构建产物与缓存
+.gradle/
+build/
+
+# IDE
+*.iml
+.idea/
+
+# DSH 会话/工具状态
+.dsh/
+
+# 产物与签名
+*.apk
+*.keystore
+manual-build/
+
+# 本机工具链缓存与分发包
+.android-toolchain/
+dist/
+
+apk-qr.png
+qr.png
+
+# 上传脚本的临时缓存（内容寻址的 blob sha，可重建）
+.gh-upload-cache.json

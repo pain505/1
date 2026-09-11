@@ -1,0 +1,30 @@
+# 统一行尾，避免 Windows 上克隆出来的 shell 脚本在 Linux/CI 上跑不起来。
+#
+# 关键：gradlew 是 POSIX shell 脚本，一旦被转成 CRLF，Linux 上会报
+#   /bin/sh^M: bad interpreter
+# 直接导致 GitHub Actions 的 Gradle 步骤失败。
+
+* text=auto
+
+# POSIX shell 脚本必须是 LF
+gradlew text eol=lf
+*.sh text eol=lf
+tools/pre-push text eol=lf
+
+# Windows 批处理保持 CRLF
+gradlew.bat text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制
+*.jar binary
+*.png binary
+*.jpg binary
+*.keystore binary
+*.apk binary
+
+# 这些是精确比对的内容，不要做行尾转换
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
