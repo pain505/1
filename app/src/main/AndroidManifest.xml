@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  取件码管家 — 清单文件
+
+  刻意不声明 INTERNET / SEND_SMS：本 App 只在本机读取与解析，不联网、不发短信。
+
+  注意 versionCode / versionName 写在这里，而不是只写在 app/build.gradle.kts：
+  Gradle 会从 defaultConfig 注入它们，但 tools/build-manual.mjs 是直接调 aapt2 手工
+  构建的（本机沙箱跑不了 Gradle），手工路径没有注入这一步 —— 缺了 versionCode
+  包装不上。写在这里两条路径都对，值保持一致。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <!-- 读取取件短信（敏感权限，仅供侧载自用） -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- Android 13+ 通知权限，用于「新取件码」提醒 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PickupCode">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          短信广播：静态注册，高优先级，不 abort 广播。
+
+          ⚠️ 必须是 android:exported="true" —— 实测（Android 14 模拟器，A/B 对照）：
+          exported="false" 时系统的 SMS_RECEIVED 广播**不会**投递给本接收器，
+          「新快递到了自动识别」会完全失效，只剩手动点「立即扫描短信」可用；
+          改成 true 后同一条短信立刻入库。
+          安全上不受影响：用 android:permission 限定只有持有 BROADCAST_SMS
+          （系统短信模块）的发送方才触发得了本接收器，普通应用打不进来。
+        -->
+        <receiver
+            android:name=".input.SmsReceiver"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 通知监听：由系统绑定；不导出，且受 BIND 权限保护 -->
+        <service
+            android:name=".input.NotifyListener"
+            android:exported="false"
+            android:label="@string/notify_listener_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- 分享 / 划词导入：无界面，导入后立刻 finish -->
+        <activity
+            android:name=".input.ShareImportActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/share_import_label"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+

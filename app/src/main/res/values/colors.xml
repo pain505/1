@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand">#2E7D57</color>
+    <color name="on_brand">#FFFFFF</color>
+    <color name="on_brand_weak">#CFE8DC</color>
+
+    <color name="bg_page">#F4F5F7</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_tag">#E8F2EC</color>
+    <color name="bg_code">#EAF4EE</color>
+
+    <color name="text_primary">#1F2328</color>
+    <color name="text_secondary">#5A6169</color>
+    <color name="text_tertiary">#8B939C</color>
+
+    <color name="code_text">#1B5E3F</color>
+    <color name="code_text_unknown">#9AA2AB</color>
+    <color name="tag_text">#2E7D57</color>
+    <color name="warn">#C0392B</color>
+    <color name="permission_bg">#FFF6E0</color>
+    <color name="permission_text">#7A5300</color>
+</resources>

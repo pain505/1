@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">取件码管家</string>
+
+    <!-- 菜单 -->
+    <string name="menu_scan">立即扫描短信</string>
+    <string name="menu_paste">粘贴导入</string>
+    <string name="menu_clear_picked">清空已取</string>
+    <string name="menu_help">使用说明</string>
+
+    <!-- 顶部统计 -->
+    <string name="stats_fmt">未取 %1$d 件 · 今日到期 %2$d 件</string>
+    <string name="stats_placeholder">未取 0 件 · 今日到期 0 件</string>
+
+    <!-- 权限区 -->
+    <string name="permission_sms">⚠ 未授予短信权限，点此授权后可自动识别取件码</string>
+    <string name="permission_notify">⚠ 未开启通知使用权，点此开启可识别电商 App 的取件通知</string>
+    <string name="permission_notif_perm">⚠ 未授予通知权限，点此授权后才能收到新取件码提醒</string>
+    <string name="permission_notify_manual">请手动在「设置 → 通知 → 通知使用权」里开启本应用</string>
+
+    <!-- 列表分组 -->
+    <string name="group_picked">已取件</string>
+    <string name="group_unknown">未识别网点</string>
+    <string name="group_count">%1$d</string>
+
+    <!-- 行内文案 -->
+    <string name="code_unknown">未解析出码</string>
+    <string name="empty_hint">还没有识别到取件码。\n\n请先授予短信权限，然后点右上角菜单的「立即扫描短信」导入最近 60 天的取件短信。</string>
+    <string name="raw_empty">（无原文）</string>
+    <string name="clip_label">取件码</string>
+    <string name="dialog_raw_title">短信/通知原文</string>
+
+    <!-- 相对时间 -->
+    <string name="rel_just_now">刚刚</string>
+    <string name="rel_minutes">%1$d分钟前</string>
+    <string name="rel_hours">%1$d小时前</string>
+    <string name="rel_days">%1$d天前</string>
+
+    <!-- 倒计时 -->
+    <string name="cd_picked">已取件</string>
+    <string name="cd_expired_days">已过期 %1$d 天</string>
+    <string name="cd_less_than_hour">还剩不到 1 小时</string>
+    <string name="cd_today_before">今天 %1$d 点前</string>
+    <string name="cd_hours_left">还剩 %1$d 小时</string>
+    <string name="cd_no_expire_passed">可能已过期（约）</string>
+    <string name="cd_no_expire_soon">约 1 小时内到期</string>
+    <string name="cd_about_today">约 今天 %1$d 点前</string>
+    <string name="cd_about_hours">约 还剩 %1$d 小时</string>
+
+    <!-- 按钮 -->
+    <string name="action_ok">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_copy">复制</string>
+    <string name="action_mark_picked">标记已取</string>
+    <string name="action_mark_unpicked">标记未取</string>
+    <string name="action_delete">删除</string>
+    <string name="action_copy_raw">复制原文</string>
+    <string name="action_view_raw">查看原文</string>
+
+    <!-- Toast -->
+    <string name="toast_scanning">正在扫描短信…</string>
+    <string name="toast_scan_added">已导入 %1$d 条新取件码</string>
+    <string name="toast_scan_none">没有发现新的取件码</string>
+    <string name="toast_scan_no_permission">没有短信权限，无法扫描</string>
+    <string name="toast_busy">正在处理，请稍候</string>
+    <string name="toast_failed">操作失败，请重试</string>
+    <string name="toast_permission_denied">未获得短信权限，无法自动识别</string>
+    <string name="toast_clipboard_empty">剪贴板里没有文字</string>
+    <string name="toast_import_ok">已导入 %1$d 条取件码</string>
+    <string name="toast_import_none">没识别到取件码</string>
+    <string name="toast_import_empty">没有可导入的文字</string>
+    <string name="toast_import_failed">导入失败</string>
+    <string name="toast_copied">已复制取件码 %1$s</string>
+    <string name="toast_copied_raw">已复制原文</string>
+    <string name="toast_no_code">没有解析出取件码，已打开原文</string>
+    <string name="toast_marked_picked">已标记为已取件</string>
+    <string name="toast_marked_unpicked">已标记为未取件</string>
+    <string name="toast_deleted">已删除</string>
+    <string name="toast_cleared">已清理 %1$d 条已取件</string>
+    <string name="toast_listener_connected">已开始监听通知</string>
+
+    <!-- 对话框 -->
+    <string name="dialog_clear_picked_msg">将删除所有已标记「已取件」的记录，未取件的记录不受影响。确定继续吗？</string>
+
+    <!-- 使用说明 -->
+    <string name="help_message">1. 授予短信权限后，App 会自动识别新到的取件短信。\n\n2. 点右上角「立即扫描短信」可导入最近 60 天的历史取件短信。\n\n3. 在「设置 → 通知 → 通知使用权」里开启本应用，即可识别拼多多 / 淘宝 / 京东 / 菜鸟等 App 的取件通知。\n\n4. 短按一行 = 复制取件码；长按一行 = 标记已取 / 删除 / 查看原文。\n\n5. 也可以把取件短信分享或划词发到本 App 导入。\n\n隐私说明：所有解析都在你的手机本地完成，本应用不联网、不上传任何数据。</string>
+
+    <!-- 通知 -->
+    <string name="notify_channel_new">新取件码</string>
+    <string name="notify_new_body">识别到 %1$d 条新取件码，点击查看</string>
+    <string name="notify_listener_label">取件码通知监听</string>
+    <string name="share_import_label">导入取件码</string>
+
+</resources>

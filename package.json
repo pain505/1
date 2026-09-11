@@ -1,0 +1,19 @@
+{
+  "name": "pickup-code-android",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "取件码管家 —— 汇总快递短信与电商通知里的取件码（Android）。本 package.json 只服务离线验证脚本，不参与 APK 构建。",
+  "scripts": {
+    "test": "node tools/pre-push.mjs",
+    "test:corpus": "node tools/node/run-tests.mjs",
+    "test:parity": "node tools/node/check-kotlin-parity.mjs",
+    "test:codec": "node tools/codec-test.mjs",
+    "lint:res": "node tools/check-manifest.mjs",
+    "lint:kotlin": "node tools/kotlin-lint.mjs",
+    "hooks:install": "node tools/install-hooks.mjs",
+    "build": "node tools/build-manual.mjs",
+    "toolchain": "node tools/fetch-toolchain.mjs",
+    "kit": "node tools/make-kit.mjs"
+  }
+}

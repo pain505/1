@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用图标：自绘矢量，避免依赖可能缺失的 mipmap 资源 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FF2E7D57"
+        android:pathData="M0,0h48v48H0z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M8,16h32v9h-7a3,3 0 0,0 0,6h7v9H8v-9h7a3,3 0 0,0 0,-6H8V16z" />
+</vector>

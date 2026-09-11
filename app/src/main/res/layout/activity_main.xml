@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_page"
+    android:orientation="vertical">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brand"
+        android:paddingStart="16dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:text="@string/app_name"
+        android:textColor="@color/on_brand"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 统计条：未取 N 件 · 今日到期 M 件 -->
+    <TextView
+        android:id="@+id/statsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brand"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        android:text="@string/stats_placeholder"
+        android:textColor="@color/on_brand_weak"
+        android:textSize="13sp" />
+
+    <!-- 权限提示区：缺权限时才可见 -->
+    <LinearLayout
+        android:id="@+id/permissionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/smsPermission"
+            style="@style/PermissionRow"
+            android:text="@string/permission_sms" />
+
+        <TextView
+            android:id="@+id/notifyPermission"
+            style="@style/PermissionRow"
+            android:text="@string/permission_notify" />
+
+        <TextView
+            android:id="@+id/notifPerm"
+            style="@style/PermissionRow"
+            android:text="@string/permission_notif_perm" />
+    </LinearLayout>
+
+    <!-- 列表：空列表时自动显示 android.R.id.empty -->
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:padding="32dp"
+        android:text="@string/empty_hint"
+        android:textColor="@color/text_secondary"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+</LinearLayout>
