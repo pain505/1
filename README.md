@@ -121,7 +121,7 @@ NoClassDefFoundError: Failed resolution of: Lkotlin/collections/CollectionsKt;
 
 ### 方式一：下载已编译的 APK
 
-从 [Releases](../../releases) 下载 `pickup-code-debug.apk`，传到手机安装
+从本仓库的 **Releases** 页面下载 `pickup-code-debug.apk`，传到手机安装
 （需允许「安装未知来源应用」）。
 
 ### 方式二：自己编译

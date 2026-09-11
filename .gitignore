@@ -23,3 +23,6 @@ dist/
 
 apk-qr.png
 qr.png
+
+# 上传脚本的临时缓存（内容寻址的 blob sha，可重建）
+.gh-upload-cache.json
