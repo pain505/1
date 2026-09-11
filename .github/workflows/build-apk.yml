@@ -1,0 +1,67 @@
+name: build-apk
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - 'build.gradle.kts'
+      - 'settings.gradle.kts'
+      - '.github/workflows/build-apk.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Verify parser rules locally (Node offline harness)
+        run: node tools/node/run-tests.mjs
+
+      - name: Verify Kotlin/Node rule parity
+        run: node tools/node/check-kotlin-parity.mjs
+
+      - name: Verify JSON codec contract
+        run: node tools/codec-test.mjs
+
+      - name: Static self-check (resources / manifest / banned imports)
+        run: node tools/check-manifest.mjs
+
+      - name: Kotlin cross-file call lint (arity / missing members / contract names)
+        run: node tools/kotlin-lint.mjs
+
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Show APK info
+        run: |
+          ls -lh app/build/outputs/apk/debug/
+          "$ANDROID_HOME/build-tools/34.0.0/aapt2" dump badging app/build/outputs/apk/debug/app-debug.apk | head -20
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: pickup-code-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 90
